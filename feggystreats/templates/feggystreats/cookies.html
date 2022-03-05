@@ -1,0 +1,42 @@
+{% extends "feggystreats/layout.html" %}
+{% load static %}
+
+{% block main %}
+
+    <div class="banner">
+        Cookies
+    </div>
+    <p style="text-align: center;">
+        Cookies are sold by the dozen.
+    </p>
+    <br>
+
+    <div id="container">
+        <div class="row">
+        {% if items %}
+            {% for item in items %}
+                <div class="col-lg-4" style="margin-bottom: 15px;">
+                    <div id="item">
+                        <div>
+                            <img class="thumbnail" src="{{ item.imageURL }}">
+                        </div>
+                        <div id="name">
+                            {{ item.name }}
+                        </div>
+                        <div id="price">
+                            {{ item.price|floatformat:2 }}
+                        </div>
+                        <div style="display: inline-block;">
+                            <input id="q{{item.id}}" type="number" min="1" max="20">
+                            <button data-item="{{ item.id}}" data-action="add" class="btn btn-outline add-btn update-cart">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            Page is empty
+        {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

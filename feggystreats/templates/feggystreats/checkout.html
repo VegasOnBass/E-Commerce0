@@ -1,0 +1,171 @@
+{% extends "feggystreats/layout.html" %}
+{% load static %}
+
+
+{% block main %}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="box">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Name..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="email" name="email" placeholder="Email..">
+                    </div>
+                </div>
+                <div id="shipping-info">
+                    <hr>
+						<p>Shipping Information:</p>
+						<hr>
+						<div class="form-field">
+							<input class="form-control" type="text" name="address" placeholder="Address..">
+						</div>
+						<div class="form-field">
+							<input class="form-control" type="text" name="city" placeholder="City..">
+						</div>
+						<div class="form-field">
+							<input class="form-control" type="text" name="state" placeholder="State..">
+						</div>
+						<div class="form-field">
+							<input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+						</div>
+                </div>
+                <hr>
+                <input id="form-btn" type="submit" value="Continue">
+            </form>
+        </div>
+
+        <br>
+        <div class="box-element hidden" id="payment-info">
+            <small>Paypal Options</small>
+            <div id="paypal-button-container"></div>
+            <!--<button id="payment">Make Payment</button>-->
+        </div>
+    </div>
+   
+
+    <div class="col-lg-6">
+        <div class="box">
+            <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+            <hr>
+            <h3>Order Summary</h3>
+            <hr>
+            {% for item in items %}
+            <div class="cart-row">
+                <div style="flex: 2">
+                    <img class="thumbnail2" src="{{ item.item.imageURL }}">
+                </div>
+                <div style="flex: 2"><p>{{ item.item.name }}</p></div>
+                <div style="flex: 1"><p>${{ item.item.price|floatformat:2 }}</p></div>
+                <div style="flex: 1"><p>{{ item.quantity }}</p></div>
+                <div style="flex: 1">${{ item.get_total|floatformat:2 }}</div>
+            </div>
+            {% endfor %}
+            <h5>Items:   {{ order.cart_items }}</h5>
+            <h5>Total:   ${{ order.cart_total|floatformat:2 }}</h5>
+        </div>
+    </div>
+
+</div>
+
+<!-- Include the PayPal JavaScript SDK; replace "YOUR_KEY" with your own sandbox Business account app client ID -->
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_KEY&currency=USD&disable-funding=credit"></script>
+
+<script>
+    var total = '{{ order.cart_total }}'
+    
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+
+        // Set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: parseFloat(total).toFixed(2)
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                submitFormData()
+            });
+        }
+
+
+    }).render('#paypal-button-container');
+</script>
+
+<script type="text/javascript">
+
+    if(user != 'AnonymousUser') {
+        document.getElementById('user-info').innerHTML = ''
+    }
+
+    var form = document.getElementById('form')
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+        console.log('Form submitted')
+        document.getElementById('form-btn').classList.add('hidden')
+        document.getElementById('payment-info').classList.remove('hidden')
+        
+    })
+
+    /*
+    document.getElementById('payment').addEventListener('click', function(e){
+        submitFormData()
+    })
+    */
+
+    function submitFormData(){
+        console.log('Payment button clicked')
+
+        var userFormData = {
+            'name':form.name.value,
+            'email':null,
+            'total':total
+        }
+
+        var shippingInfo = {
+            'address':form.address.value,
+            'city':form.city.value,
+            'state':form.state.value,
+            'zipcode':form.zipcode.value
+        }
+
+        if(user == 'AnonymousUser'){
+            userFormData.email = form.email.value
+        }else{
+            userFormData.email = user.email
+        }
+
+        fetch('/process_order/', {
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo})
+        })
+        .then(response => response.json())
+        .then((data) =>{
+            console.log('Success:', data);
+            alert('Transaction Complete');
+
+            cart = {}
+            document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+
+            window.location.href = "{% url 'index' %}"
+        })
+    }
+</script>
+
+{% endblock %}

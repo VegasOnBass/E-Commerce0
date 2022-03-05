@@ -1,0 +1,112 @@
+body {
+    color: seashell;
+
+    background-image: url("images/baking_background.jpeg");
+    background-color: tan;
+
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+.bg-dark {
+    background-color:  rgba(151, 109, 156, 0.856) !important;
+}
+
+
+.btn{
+    color: seashell;
+    font-weight: bold;
+}
+
+.navbar-collapse.in {
+    display: block !important;
+}
+
+#cart{
+	width:25px;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+#cart-total{
+	display: block;
+	text-align: center;
+	color:#fff;
+	background-color: red;
+	width: 20px;
+	height: 25px;
+	border-radius: 50%;
+	font-size: 14px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+#banner {
+    width: 100%;
+    height: auto;
+}
+
+.banner {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 50px;
+    font-family: cursive;
+    font-style: italic;
+}
+
+.thumbnail {
+    width: 70%;
+    height: 200px;
+    box-shadow: -1px, -23x, 5px, -2px;
+}
+
+.thumbnail2 {
+    width: 75px;
+    height: 75px;
+}
+
+.box {
+    box-shadow: hsl(0, 0%, 80%), ;
+}
+
+.cart-row {
+    display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+}
+
+.quantity {
+    display: inline-block;
+    font-weight: 700;
+    padding-right: 10px;
+}
+
+.chg-quantity {
+    width: 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition: .1s;
+}
+
+.form-field {
+    width: 250px;
+    display: inline-block;
+    padding: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
