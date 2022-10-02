@@ -3,12 +3,12 @@
 
 {% block main %}
 
-    <div>
-        cart
-    </div>
+    <h1>
+        Cart
+    </h1>
     <div class="row">
         <div class="col-lg-12">
-            <a  class="btn btn-outline-dark" href="{% url 'cookies' %}">&#x2190; Continue Shopping</a>
+            <a  class="btn btn-outline" href="{% url 'cookies' %}">&#x2190; Continue Shopping</a>
 
             <br>
             <br>
@@ -23,7 +23,7 @@
 
     <div class="box">
         <div class="cart-row">
-            <div style="flex: 2"></div>
+            <div class="hide" style="flex: 2"></div>
             <div style="flex: 2"><strong>Item</strong></div>
             <div style="flex: 1"><strong>Price</strong></div>
             <div style="flex: 1"><strong>Quantity</strong></div>
@@ -31,14 +31,14 @@
         </div>
         {% for item in items %}
         <div class="cart-row">
-            <div style="flex: 2">
+            <div class="hide" style="flex: 2">
                 <img class="thumbnail2" src="{{ item.item.imageURL }}">
             </div>
             <div style="flex: 2"><p>{{ item.item.name }}</p></div>
             <div style="flex: 1"><p>${{ item.item.price|floatformat:2 }}</p></div>
-            <div style="flex: 1">
+            <div style="flex: 1;">
                 <p class="quantity">{{ item.quantity }}</p>
-                <div class="quantity">
+                <div class="quantity" >
                     <img data-item="{{ item.item.id}}" data-action="add2" class="chg-quantity update-cart" src="{% static 'feggystreats/images/arrow_up.png' %}">
                     <img data-item="{{ item.item.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static 'feggystreats/images/down_arrow.png' %}">
                 </div>
@@ -48,9 +48,9 @@
         {% endfor %}
         {% if items %}
         <div class="row">
-            <div class="col-lg-9"></div>
-            <div class="col-lg-3">
-                <a  class="btn btn-outline-dark" href="{% url 'checkout' %}"> Checkout &#x2192;</a>
+            <div class="col-md-9 col-8"></div>
+            <div class="col-md-3 col-2">
+                <a  class="btn btn-outline" href="{% url 'checkout' %}"> Checkout &#x2192;</a>
             </dv>
         </div>
         {% endif %}

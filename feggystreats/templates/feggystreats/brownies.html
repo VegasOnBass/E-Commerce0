@@ -3,37 +3,53 @@
 
 {% block main %}
 
-    <div class="banner">
-        Brownies
-    </div>
-    <br>
+<h1 class="banner">
+    Brownies
+</h1>
+<br>
 
-    <div id="container">
-        <div class="row">
+<div>
+    <div class="row gx-3 gy-3">
         {% if items %}
-            {% for item in items %}
-                <div class="col-lg-4" style="margin-bottom: 15px;">
-                    <div id="item">
-                        <div>
-                            <img class="thumbnail" src="{{ item.imageURL }}">
-                        </div>
-                        <div id="name">
+        {% for item in items %}
+        <div class="col-lg-4 col-md-6">
+            <div id="container" class="p-4">
+                <div id="item">
+                    <div class="center">
+                        <img class="thumbnail" src="{{ item.imageURL }}">
+                    </div>
+                    <div id="name" class="center">
+                        <div class="center">
                             {{ item.name }}
                         </div>
-                        <div id="price">
-                            {{ item.price|floatformat:2 }}
-                        </div>
-                        <div style="display: inline-block;">
-                            <input id="q{{item.id}}" type="number" min="1" max="20">
-                            <button data-item="{{ item.id}}" data-action="add" class="btn btn-outline add-btn update-cart">Add To Cart</button>
-                        </div>
+                    </div>
+                    <div id="price" class="center">
+                        ${{ item.price|floatformat:2 }}
+                    </div>
+                    <div class="center itemFooter" style="flex-direction: row; margin-top: 3rem;">
+                        <select id="q{{item.id}}" class="quantityInput" type="number" min="1" max="20">
+                            <option value="1">QTY: 1</option>
+                            <option value="2">QTY: 2</option>
+                            <option value="3">QTY: 3</option>
+                            <option value="4">QTY: 4</option>
+                            <option value="5">QTY: 5</option>
+                            <option value="6">QTY: 6</option>
+                            <option value="7">QTY: 7</option>
+                            <option value="8">QTY: 8</option>
+                            <option value="9">QTY: 9</option>
+                            <option value="10">QTY: 10</option>
+                        </select>
+                        <button data-item="{{ item.id}}" data-action="add"
+                            class="btn btn-outline add-btn update-cart">Add To Cart</button>
                     </div>
                 </div>
-            {% endfor %}
-        {% else %}
-            Page is empty
-        {% endif %}
+            </div>
         </div>
+        {% endfor %}
+        {% else %}
+        Page is empty
+        {% endif %}
     </div>
+</div>
 
 {% endblock %}

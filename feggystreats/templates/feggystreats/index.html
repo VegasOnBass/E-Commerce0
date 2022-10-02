@@ -3,28 +3,35 @@
 
 {% block main %}
 
-    <div id="banner">
-        <img class="banner" src="{% static 'feggystreats/images/feggystreatsbanner.jpg' %}"> 
-    </div>
-    <br>
-    <div id="index">
-        <pre style="text-align: center; color: seashell; font-weight: bold; font-size: larger; margin-left: -125px;">
+<div id="banner">
+    <!-- <img class="banner" src="{% static 'feggystreats/images/feggystreatsbanner.jpg' %}"> -->
+    <h1 style="font-family: cursive;">Feggy's Treats</h1>
+</div>
+<br>
+<div class="indexRow">
+    <div id="index" class=" indexWelcome col-md--6 mt-5 center">
+        <p style="text-align: center; font-weight: bold; font-size: larger;">
             Welcome to Feggy's Treats!
-            Our homemade treats are baked good to melt your soul, leaving you wanting more.
-            Whether enjoying them alone or in the company of others, 
+            Our homemade treats are baked to melt your soul, leaving you wanting more.
+            Whether enjoying them alone or in the company of others,
             you'll surely have a smile on as you get your snack on.
             So don't be shy and dive in.
             There's plenty to go around.
-        </pre>
+        </p>
         <br>
         <br>
-        <pre style="text-align: center; color: seashell; font-weight: bold; font-size: larger; margin-left: -125px;">
-            All treats contain eggs. Some may contain nuts.
-        </pre>
+    </div>
+    <br/>
+
+    <div class="imageStack col-md-6 center">
+        <img class="indexImg" src="{%static 'feggystreats/images/chocolateChipCookie-removebg-preview.png' %}">
+        <img class="spiral" src="{%static 'feggystreats/images/spiral-removebg-preview.png' %}">
     </div>
 
-    <div id="store">
-        
-    </div>
-
+</div>
+</div>
+<br/>
+<p style="text-align: center; color: seashell; font-weight: bold; font-size: larger;">
+    All treats contain eggs. Some may contain nuts.
+</p>
 {% endblock %}

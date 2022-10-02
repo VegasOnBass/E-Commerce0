@@ -1,16 +1,15 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 import json 
 import datetime
+import os
 
-from .models import Items, Customer, Order, OrderItem, ShippingAddress
-from .utils import cookieCart, cartData, guestOrder 
-
-# Create your views here.
+from .models import Items, Order, OrderItem, ShippingAddress
+from .utils import cartData, guestOrder 
 
 
 def index(request):
@@ -70,7 +69,7 @@ def checkout(request):
     order = data['order']
     cartItems = data['cartItems']
         
-    context = {'items':items, 'order':order, 'cartItems':cartItems}
+    context = {'items':items, 'order':order, 'cartItems':cartItems, 'PAYPAL_KEY': os.environ.get('PAYPAL_KEY')}
     return render(request, "feggystreats/checkout.html", context)
 
 def addItem(request):

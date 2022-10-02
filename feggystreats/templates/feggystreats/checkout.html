@@ -49,13 +49,13 @@
 
     <div class="col-lg-6">
         <div class="box">
-            <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+            <a  class="btn btn-outline" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
             <hr>
             <h3>Order Summary</h3>
             <hr>
             {% for item in items %}
             <div class="cart-row">
-                <div style="flex: 2">
+                <div class="hide" style="flex: 2">
                     <img class="thumbnail2" src="{{ item.item.imageURL }}">
                 </div>
                 <div style="flex: 2"><p>{{ item.item.name }}</p></div>
@@ -72,7 +72,7 @@
 </div>
 
 <!-- Include the PayPal JavaScript SDK; replace "YOUR_KEY" with your own sandbox Business account app client ID -->
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_KEY&currency=USD&disable-funding=credit"></script>
+<script src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_KEY }}&currency=USD&disable-funding=credit"></script>
 
 <script>
     var total = '{{ order.cart_total }}'
