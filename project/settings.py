@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # False if not in os.environ because of casting above
-DEBUG = env('DEBUG')
+DEBUG = env('DEBUG') != 'False'
 
 ALLOWED_HOSTS = []
 
