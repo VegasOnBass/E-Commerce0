@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # False if not in os.environ because of casting above
-DEBUG = env('DEBUG') != 'False'
+DEBUG = env('DEBUG') 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'localhost']
 
 
 # Application definition
@@ -128,6 +128,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
+
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Heroku: Update database configuration from $DATABASE_URL.
