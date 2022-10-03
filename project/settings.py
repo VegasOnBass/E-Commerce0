@@ -29,7 +29,8 @@ if 'SECRET_KEY' in os.environ:
     SECRET_KEY = os.environ["SECRET_KEY"]
 
 # False if not in os.environ because of casting above
-DEBUG = env('DEBUG') 
+if 'DEBUG' in os.environ:
+    DEBUG = env('DEBUG') 
 
 ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'localhost']
 
