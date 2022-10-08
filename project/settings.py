@@ -34,7 +34,6 @@ if 'DEBUG' in os.environ:
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
