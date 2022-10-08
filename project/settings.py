@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 
 # False if not in os.environ because of casting above
 if 'DEBUG' in os.environ:
-    DEBUG = True 
+    DEBUG = env('DEBUG') 
 
 ALLOWED_HOSTS = ['*']
 
@@ -131,7 +131,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Heroku: Update database configuration from $DATABASE_URL.
