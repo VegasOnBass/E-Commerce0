@@ -31,7 +31,7 @@ SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 if 'DEBUG' in os.environ:
     DEBUG = env('DEBUG') 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://feggystreats.herokuapp.com/']
 
 # Application definition
 
