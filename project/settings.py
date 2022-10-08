@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 
 # False if not in os.environ because of casting above
 if 'DEBUG' in os.environ:
-    DEBUG = env('DEBUG') 
+    DEBUG = True 
 
 ALLOWED_HOSTS = ['*']
 
