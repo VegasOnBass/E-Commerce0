@@ -32,7 +32,7 @@ if 'SECRET_KEY' in os.environ:
 if 'DEBUG' in os.environ:
     DEBUG = env('DEBUG') 
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'localhost']
+ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'localhost', '127.0.0.1']
 
 
 # Application definition
