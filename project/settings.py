@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import environ
-import django_heroku
-
-django_heroku.settings(locals())
 
 env = environ.Env()
 # reading .env file
@@ -145,3 +142,8 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+import django_heroku
+
+django_heroku.settings(locals())
