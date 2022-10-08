@@ -144,7 +144,3 @@ DATABASES['default'].update(db_from_env)
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
-import django_heroku
-
-django_heroku.settings(locals())
