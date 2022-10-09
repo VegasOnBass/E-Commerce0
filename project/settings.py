@@ -32,7 +32,7 @@ SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 
 DEBUG = env("DEBUG") 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1:8000/', 'feggystreats.herokuapp.com/']
 
 # Application definition
 
@@ -143,3 +143,8 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
