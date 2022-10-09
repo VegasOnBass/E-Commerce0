@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY", default="unsafe-secret-key")
 
 # False if not in os.environ because of casting above
 
-DEBUG = True 
+DEBUG = env("DEBUG") 
 
 ALLOWED_HOSTS = ['*']
 
@@ -142,8 +142,3 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
